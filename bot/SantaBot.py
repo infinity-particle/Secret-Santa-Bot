@@ -976,9 +976,11 @@ class SantaBot:
         if len(remaining_participants_copy) == 0:
             final_pairings = {this_participant[0]: participant_pairings.pop()}
             return True, final_pairings
+        
+        random.seed(int(datetime.datetime.utcnow().timestamp()));
 
         while(len(participant_pairings) > 0):
-            random_receiver = random.sample(participant_pairings, 1)[0]
+            random_receiver = random.sample(list(participant_pairings), 1)[0]
             participant_pairings.remove(random_receiver)
             possible = True
             new_remaining_participants = deepcopy(remaining_participants_copy)
